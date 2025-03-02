@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reinforcement Learning II Mind Map</title>
+  <!-- MathJax for LaTeX equations -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f8f9fa;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .mindmap {
+      position: relative;
+      width: 1400px;
+      height: 1200px;
+      margin: 20px 0;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .node {
+      position: absolute;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      font-weight: bold;
+    }
+    .node:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    /* Colors */
+    .red {
+      background-color: #ffcccc;
+      border: 2px solid #e60000;
+      color: #990000;
+    }
+    .blue {
+      background-color: #cce5ff;
+      border: 2px solid #0066cc;
+      color: #004080;
+    }
+    .green {
+      background-color: #ccffcc;
+      border: 2px solid #00cc00;
+      color: #006600;
+      font-weight: normal;
+    }
+    /* Info panel styles */
+    #infoPanel {
+      width: 1400px;
+      min-height: 150px;
+      padding: 15px;
+      margin-top: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: none;
+    }
+    .infoTitle {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #333;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+    .infoContent {
+      line-height: 1.5;
+    }
+    /* Legend */
+    .legend {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+    }
+    .legendItem {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .legendBox {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+    }
+    line {
+      stroke: #999;
+      stroke-width: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Reinforcement Learning II</h1>
+    
+    <div class="mindmap" id="mindmap">
+      <!-- SVG for connecting lines -->
+      <svg width="1400" height="1200" style="position: absolute; top: 0; left: 0;">
+        <!-- Lines from central red node (center ~ (700,600)) to Blue Nodes -->
+        <line x1="700" y1="600" x2="100" y2="100" />     <!-- Blue Node A: What is RL? -->
+        <line x1="700" y1="600" x2="1300" y2="100" />    <!-- Blue Node B: Markov Decision Processes -->
+        <line x1="700" y1="600" x2="1300" y2="1100" />   <!-- Blue Node C: Passive RL Methods -->
+        <line x1="700" y1="600" x2="100" y2="1100" />    <!-- Blue Node D: Active RL Methods -->
+        
+        <!-- Blue Node A (What is RL?) to its Green Nodes -->
+        <line x1="100" y1="100" x2="100" y2="240" />  <!-- RL Definition -->
+        <line x1="100" y1="100" x2="100" y2="300" />  <!-- Agent & Environment -->
+        <line x1="100" y1="100" x2="100" y2="360" />  <!-- Applications -->
+        
+        <!-- Blue Node B (MDPs) to its Green Nodes -->
+        <line x1="1300" y1="100" x2="1300" y2="240" />  <!-- States & Transitions -->
+        <line x1="1300" y1="100" x2="1300" y2="300" />  <!-- Reward Function -->
+        <line x1="1300" y1="100" x2="1300" y2="360" />  <!-- Probabilistic Outcomes -->
+        
+        <!-- Blue Node C (Passive RL Methods) to its Green Nodes -->
+        <line x1="1300" y1="1100" x2="1300" y2="1160" /> <!-- Direct Utility Estimation -->
+        <line x1="1300" y1="1100" x2="1300" y2="1220" /> <!-- Adaptive Dynamic Programming (ADP) -->
+        <line x1="1300" y1="1100" x2="1300" y2="1280" /> <!-- Temporal Difference (TD) Learning -->
+        
+        <!-- Blue Node D (Active RL Methods) to its Green Nodes -->
+        <line x1="100" y1="1100" x2="100" y2="1160" />  <!-- ADP-active -->
+        <line x1="100" y1="1100" x2="100" y2="1220" />  <!-- Q-learning -->
+      </svg>
+      
+      <!-- Central Red Node -->
+      <div class="node red" style="width: 300px; top: 560px; left: 650px;" 
+           onclick="showInfo('Reinforcement Learning II', 
+           '&lt;ul&gt;&lt;li&gt;RL II builds on the basic MDP framework to address scenarios where the transition function and rewards are not fully known. The agent learns by interacting with the environment.&lt;/li&gt;&lt;li&gt;Topics include Passive RL methods (direct utility estimation, ADP, TD) and Active RL methods (policy adaptation and Q-learning).&lt;/li&gt;&lt;/ul&gt;')">
+        Reinforcement Learning II
+      </div>
+      
+      <!-- Blue Node A: What is RL? -->
+      <div class="node blue" style="width: 250px; top: 20px; left: 50px;" 
+           onclick="showInfo('What is Reinforcement Learning?', 
+           '&lt;ul&gt;&lt;li&gt;RL is a paradigm where an agent learns a policy \\(\\pi(a|s)\\) to maximize the cumulative discounted reward \\( G = \\sum_{t=0}^{\\infty} \\gamma^t R(s_t) \\).&lt;/li&gt;&lt;li&gt;It combines learning and acting in the environment.&lt;/li&gt;&lt;/ul&gt;')">
+        What is RL?
+      </div>
+      <!-- Green Nodes for What is RL? -->
+      <div class="node green" style="width: 220px; top: 240px; left: 50px;" 
+           onclick="showInfo('RL Definition', 
+           '&lt;ul&gt;&lt;li&gt;Return: \\( G = \\sum_{t=0}^{\\infty} \\gamma^t R(s_t) \\), where \\( \\gamma \\) is the discount factor with \\(0 \\le \\gamma < 1\\).&lt;/li&gt;&lt;/ul&gt;')">
+        RL Definition
+      </div>
+      <div class="node green" style="width: 220px; top: 300px; left: 50px;" 
+           onclick="showInfo('Agent and Environment', 
+           '&lt;ul&gt;&lt;li&gt;The agent selects actions \\(a_t\\) in state \\(s_t\\) and receives reward \\(r_{t+1}\\) and a new state \\(s_{t+1}\\).&lt;/li&gt;&lt;/ul&gt;')">
+        Agent &amp; Environment
+      </div>
+      <div class="node green" style="width: 220px; top: 360px; left: 50px;" 
+           onclick="showInfo('Applications', 
+           '&lt;ul&gt;&lt;li&gt;Examples: Pacman, chess, robotics, game playing, finance, etc.&lt;/li&gt;&lt;/ul&gt;')">
+        Applications
+      </div>
+      
+      <!-- Blue Node B: Markov Decision Processes -->
+      <div class="node blue" style="width: 250px; top: 20px; left: 1100px;" 
+           onclick="showInfo('Markov Decision Processes', 
+           '&lt;ul&gt;&lt;li&gt;An MDP is defined by a state space \\(S\\), actions \\(A\\), a transition function \\(T(s\'|s,a)\\), and a reward function \\(R(s)\\).&lt;/li&gt;&lt;li&gt;The next state is drawn from a probability distribution \\( P(s\'|s,a) \\).&lt;/li&gt;&lt;/ul&gt;')">
+        Markov Decision Processes
+      </div>
+      <!-- Green Nodes for MDPs -->
+      <div class="node green" style="width: 220px; top: 240px; left: 1100px;" 
+           onclick="showInfo('States &amp; Transitions', 
+           '&lt;ul&gt;&lt;li&gt;The state space \\(S\\) includes all possible configurations (e.g., grid cells).&lt;/li&gt;&lt;/ul&gt;')">
+        States &amp; Transitions
+      </div>
+      <div class="node green" style="width: 220px; top: 300px; left: 1100px;" 
+           onclick="showInfo('Reward Function', 
+           '&lt;ul&gt;&lt;li&gt;The reward function \\(R(s)\\) assigns a numeric value to each state (e.g., \\(R(s)=1\\) for a goal, \\(R(s)=-1\\) for a bomb).&lt;/li&gt;&lt;/ul&gt;')">
+        Reward Function
+      </div>
+      <div class="node green" style="width: 220px; top: 360px; left: 1100px;" 
+           onclick="showInfo('Probabilistic Outcomes', 
+           '&lt;ul&gt;&lt;li&gt;Actions yield different outcomes with specified probabilities, e.g., \\( T((2,3)|(2,2),\\text{up}) = 0.8 \\), etc.&lt;/li&gt;&lt;/ul&gt;')">
+        Probabilistic Outcomes
+      </div>
+      
+      <!-- Blue Node C: Passive RL Methods -->
+      <div class="node blue" style="width: 250px; top: 900px; left: 1100px;" 
+           onclick="showInfo('Passive RL Methods', 
+           '&lt;ul&gt;&lt;li&gt;Passive RL learns the value of a fixed policy \\(\\pi\\).&lt;/li&gt;&lt;li&gt;Methods include Direct Utility Estimation, Adaptive Dynamic Programming (ADP), and Temporal Difference (TD) Learning.&lt;/li&gt;&lt;/ul&gt;')">
+        Passive RL Methods
+      </div>
+      <!-- Green Nodes for Passive RL -->
+      <div class="node green" style="width: 220px; top: 1160px; left: 1100px;" 
+           onclick="showInfo('Direct Utility Estimation', 
+           '&lt;ul&gt;&lt;li&gt;Estimate \\( U^\\pi(s) \\) as the average return from multiple trials: \\( U^\\pi(s) \\approx \\frac{1}{N}\\sum_{i=1}^N u_i(s) \\).&lt;/li&gt;&lt;/ul&gt;')">
+        Direct Utility Estimation
+      </div>
+      <div class="node green" style="width: 220px; top: 1220px; left: 1100px;" 
+           onclick="showInfo('Adaptive Dynamic Programming (ADP)', 
+           '&lt;ul&gt;&lt;li&gt;ADP approximates the transition probabilities \\( T(s\'|s,\\pi(s)) \\) from trial data and uses the Bellman update: \\( U(s)=R(s)+\\gamma\\sum_{s'}T(s\'|s,\\pi(s))U(s') \\).&lt;/li&gt;&lt;/ul&gt;')">
+        Adaptive Dynamic Programming
+      </div>
+      <div class="node green" style="width: 220px; top: 1280px; left: 1100px;" 
+           onclick="showInfo('Temporal Difference (TD) Learning', 
+           '&lt;ul&gt;&lt;li&gt;TD Learning updates state values as: \\( U^\\pi(s) \\leftarrow U^\\pi(s) + \\alpha \\left[ R(s) + \\gamma U^\\pi(s\') - U^\\pi(s) \\right] \\).&lt;/li&gt;&lt;/ul&gt;')">
+        TD Learning
+      </div>
+      
+      <!-- Blue Node D: Active RL Methods -->
+      <div class="node blue" style="width: 250px; top: 900px; left: 50px;" 
+           onclick="showInfo('Active RL Methods', 
+           '&lt;ul&gt;&lt;li&gt;Active RL allows the agent to adapt its policy during learning.&lt;/li&gt;&lt;li&gt;Methods include ADP-active (updating the policy using current transition estimates) and Q-learning.&lt;/li&gt;&lt;/ul&gt;')">
+        Active RL Methods
+      </div>
+      <!-- Green Nodes for Active RL -->
+      <div class="node green" style="width: 220px; top: 1160px; left: 50px;" 
+           onclick="showInfo('ADP-active', 
+           '&lt;ul&gt;&lt;li&gt;ADP-active updates the policy after each state by solving: \\( \\pi(s)=\\arg\\max_a \\sum_{s'}T(s\'|s,a)U(s') \\).&lt;/li&gt;&lt;/ul&gt;')">
+        ADP-active
+      </div>
+      <div class="node green" style="width: 220px; top: 1220px; left: 50px;" 
+           onclick="showInfo('Q-learning', 
+           '&lt;ul&gt;&lt;li&gt;Q-learning updates action-value estimates: \\( Q(s,a) \\leftarrow Q(s,a) + \\alpha \\left[ R(s) + \\gamma \\max_{a'}Q(s\',a') - Q(s,a) \\right] \\).&lt;/li&gt;&lt;/ul&gt;')">
+        Q-learning
+      </div>
+      
+    </div>
+    
+    <!-- Information Panel -->
+    <div id="infoPanel">
+      <div class="infoTitle" id="infoTitle">Click on a concept to see details</div>
+      <div class="infoContent" id="infoContent">
+        Select any node in the mind map to display detailed information.
+      </div>
+    </div>
+    
+    <!-- Legend -->
+    <div class="legend">
+      <div class="legendItem">
+        <div class="legendBox red"></div>
+        <span>Big Picture Concepts</span>
+      </div>
+      <div class="legendItem">
+        <div class="legendBox blue"></div>
+        <span>Major Categories</span>
+      </div>
+      <div class="legendItem">
+        <div class="legendBox green"></div>
+        <span>Details &amp; Equations</span>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function showInfo(title, content) {
+      document.getElementById("infoPanel").style.display = "block";
+      document.getElementById("infoTitle").textContent = title;
+      document.getElementById("infoContent").innerHTML = content;
+      MathJax.typesetPromise(); // re-render equations
+    }
+  </script>
+</body>
+</html>
